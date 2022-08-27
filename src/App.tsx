@@ -1,13 +1,17 @@
 import { KeyboardEvent, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
+import { appWindow, LogicalSize } from "@tauri-apps/api/window";
 
 import { autocomplete as fetchAutocomplete } from "./actions";
+import { useSizeChange } from "./hooks";
 import { highlight } from "./utils";
 
 import "./App.css";
 
 function App() {
+  const appRef = useRef<HTMLDivElement>(null);
+
   const [userInput, setUserInput] = useState("");
   const autocomplete = useQuery(
     ["autocomplete", userInput],
@@ -15,8 +19,19 @@ function App() {
     { keepPreviousData: true }
   );
 
+  useSizeChange(
+    appRef,
+    "App",
+    (width, height) => {
+      if (width && height) {
+        appWindow.setSize(new LogicalSize(width, height));
+      }
+    },
+    [JSON.stringify(autocomplete.data || {})]
+  );
+
   return (
-    <div data-tauri-drag-region id="App" className="App">
+    <div data-tauri-drag-region id="App" className="App" ref={appRef}>
       <input
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}

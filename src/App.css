@@ -8,12 +8,16 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  overflow: hidden;
 }
 
 .App {
-  height: 100%;
-  width: 100%;
+  box-sizing: content-box;
+  height: max-content;
+  width: max-content;
   margin: 0 auto;
-  padding: 2rem;
+  border: 1rem solid var(--accent-color);
+  padding: 1rem;
   text-align: center;
+  background-color: white;
 }
