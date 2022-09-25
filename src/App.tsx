@@ -14,7 +14,7 @@ function App() {
 
   const [userInput, setUserInput] = useState("");
   const autocomplete = useQuery(
-    ["autocomplete", userInput],
+    ["autocomplete", userInput.toLowerCase()],
     () => fetchAutocomplete(userInput),
     { keepPreviousData: true }
   );
