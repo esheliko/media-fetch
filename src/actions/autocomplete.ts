@@ -1,5 +1,4 @@
 import { fetch, ResponseType } from "@tauri-apps/api/http";
-import { ChangeEvent } from "react";
 
 export default async (query: string): Promise<string[]> => {
   if (query === "") return [];

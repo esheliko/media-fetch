@@ -49,14 +49,10 @@ export default <T extends HTMLElement | undefined | null>(
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    console.log("START");
     setTimeout(() => {
-      console.log("CALC");
       const [newWidth, newHeight] = getElementSize(element);
-      console.log(newWidth, newHeight, element, width, height);
 
       if (newWidth !== width || newHeight !== height) {
-        console.log("SET");
         setWidth(newWidth);
         setHeight(newHeight);
       }
@@ -64,7 +60,6 @@ export default <T extends HTMLElement | undefined | null>(
   }, [width, height, ...elementSizeDeps(target.current), ...deps]);
 
   useLayoutEffect(() => {
-    console.log("CALL");
     callback(width, height, element);
   }, [width, height]);
 };
