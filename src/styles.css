@@ -1,4 +1,23 @@
 * {
-    --accent-color: #00CC88;
-    --secondary-color: #99008B;
+    --main-bg: #333;
+    --secondary-bg: #666;
+    --darkest: #222;
+
+    --accent-color: hsl(160, 100%, 40%);
+    --neutral-color: hsl(200, 80%, 50%);
+    --secondary-color: hsl(305, 100%, 30%);
+    --accent-color-soft: hsl(160, 80%, 40%);
+    --neutral-color-soft: hsl(200, 40%, 50%);
+    --secondary-color-soft: hsl(305, 80%, 30%);
+    --main-gradient: linear-gradient(175deg, var(--accent-color), var(--neutral-color), var(--secondary-color));
+    --main-gradient-soft: linear-gradient(
+        175deg,
+        var(--accent-color),
+        var(--neutral-color-soft),
+        var(--secondary-color)
+    );
+
+    --input-text-color: #ddd;
+    --placeholder-color: #aaa;
+    --text-color: white;
 }
