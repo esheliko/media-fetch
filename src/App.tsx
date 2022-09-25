@@ -32,10 +32,15 @@ function App() {
 
   return (
     <div data-tauri-drag-region id="App" className="App" ref={appRef}>
-      <input
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-      />
+      <div className="search-box">
+        <input
+          dir="auto"
+          autoFocus={true}
+          placeholder="Search media..."
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+      </div>
       {autocomplete?.data?.map((item) => (
         <div key={item}>{highlight(item, userInput)}</div>
       ))}

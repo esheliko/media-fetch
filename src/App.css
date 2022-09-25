@@ -25,4 +25,33 @@
   padding: .5rem;
 }
 
+.search-box {
+  font-size: 21px;
+  height: 1.9em;
+  width: 800px;
+  color: var(--input-text-color);
+
+  --border-width: 2px;
+  background: var(--main-gradient-soft);
+  padding: var(--border-width);
+  border-radius: calc(var(--border-width) * 2);
+}
+
+.search-box > input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.search-box > input {
+  height: 100%;
+  width: 100%;
+  padding: 0 7px;
+  border-radius: inherit;
+  background-color: var(--secondary-bg);
+  box-shadow: inset 0 0 4px -2px var(--darkest);
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+  border: none;
+}
+
 }
