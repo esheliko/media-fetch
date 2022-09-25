@@ -1,4 +1,8 @@
 * {
+  font-family: sans-serif;
+  font-size: 21px;
+  line-height: 1.4;
+  letter-spacing: .05ch;
   box-sizing: border-box;
 }
 
@@ -7,8 +11,10 @@
   width: 100vw;
   margin: 0;
   padding: 0;
-  text-align: center;
+  text-align: start;
   overflow: hidden;
+  background-color: var(--main-bg);
+  border-radius: .5rem;
 }
 
 .App {
@@ -16,8 +22,7 @@
   height: max-content;
   width: max-content;
   margin: 0 auto;
-  border: 1rem solid var(--accent-color);
-  padding: 1rem;
-  text-align: center;
-  background-color: white;
+  padding: .5rem;
+}
+
 }
