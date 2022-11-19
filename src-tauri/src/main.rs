@@ -26,29 +26,29 @@ async fn download_from_youtube(
     let id = Id::from_raw(url.as_str())?;
     eprintln!("{}", id);
     let video = Video::from_id(id.into_owned()).await?;
-    // let stream = video.best_quality().ok_or(Error::NoStreams)?;
+    let stream = video.best_quality().ok_or(Error::NoStreams)?;
 
-    // let progress_closure = move |args: CallbackArguments| {
-    //     eprintln!("{} {}", &event_name, args.current_chunk);
-    //     let arguments = MyCallbackArguments(args.clone());
-    //     if let Err(error) = window.emit(&event_name, arguments) {
-    //         eprintln!("EMIT ERROR: {}", error);
-    //     }
-    //     return;
-    // };
+    let progress_closure = move |args: CallbackArguments| {
+        eprintln!("{} {}", &event_name, args.current_chunk);
+        let arguments = MyCallbackArguments(args.clone());
+        if let Err(error) = window.emit(&event_name, arguments) {
+            eprintln!("EMIT ERROR: {}", error);
+        }
+        return;
+    };
 
-    // let complete_closure = |result: Option<PathBuf>| {
-    //     if let Some(value) = result {
-    //         eprintln!("COMPLETE: {}", value.display());
-    //     }
-    // };
+    let complete_closure = |result: Option<PathBuf>| {
+        if let Some(value) = result {
+            eprintln!("COMPLETE: {}", value.display());
+        }
+    };
 
-    // let callback = Callback::new()
-    //     .connect_on_progress_closure(progress_closure)
-    //     .connect_on_complete_closure(complete_closure);
+    let callback = Callback::new()
+        .connect_on_progress_closure(progress_closure)
+        .connect_on_complete_closure(complete_closure);
 
-    // stream.download_with_callback(callback).await?;
-    rustube::download_best_quality(url.as_str()).await?;
+    stream.download_with_callback(callback).await?;
+    // rustube::download_best_quality(url.as_str()).await?;
     Ok(())
 }
 
