@@ -1,3 +1,4 @@
+import useEventListener from "./useEventListener";
 import useSizeChange from "./useSizeChange";
 
-export { useSizeChange };
+export { useEventListener, useSizeChange };

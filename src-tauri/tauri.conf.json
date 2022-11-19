@@ -16,7 +16,20 @@
       "http": {
         "all": true,
         "request": true,
-        "scope": ["https://suggestqueries-clients6.youtube.com/*"]
+        "scope": [
+          "https://suggestqueries-clients6.youtube.com/*",
+          "https://youtube.com/*",
+          "https://accounts.spotify.com/*",
+          "https://api.spotify.com/v1/*"
+        ]
+      },
+      "shell": {
+        "all": true,
+        "open": true
+      },
+      "dialog": {
+        "all": true,
+        "open": true
       }
     },
     "bundle": {
@@ -43,7 +56,6 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": [],
       "shortDescription": "",
       "targets": "all",
       "windows": {
@@ -66,8 +78,8 @@
         "transparent": true,
         "alwaysOnTop": true,
         "title": "Media Fetch",
-        "height": 600,
-        "width": 800,
+        "height": 0,
+        "width": 0,
         "center": true
       }
     ]

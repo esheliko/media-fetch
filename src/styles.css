@@ -16,6 +16,7 @@
         var(--neutral-color-soft),
         var(--secondary-color)
     );
+    --loading-shine: hsla(200, 40%, 80%, 60%);
 
     --input-text-color: #ddd;
     --placeholder-color: #aaa;

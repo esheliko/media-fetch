@@ -1,18 +1,19 @@
-import { DependencyList, RefObject, useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { appWindow, LogicalSize } from "@tauri-apps/api/window";
 
-const elementSizeDeps = (element: HTMLElement | undefined | null) => {
-  const { width = 0, height = 0 } = element?.getBoundingClientRect() ?? {};
-  return [
-    width,
-    element?.scrollWidth,
-    element?.offsetWidth,
-    element?.clientWidth,
-    height,
-    element?.scrollHeight,
-    element?.offsetHeight,
-    element?.clientHeight,
-  ];
-};
+// const elementSizeDeps = (element: HTMLElement | undefined | null) => {
+//   const { width = 0, height = 0 } = element?.getBoundingClientRect() ?? {};
+//   return [
+//     width,
+//     element?.scrollWidth,
+//     element?.offsetWidth,
+//     element?.clientWidth,
+//     height,
+//     element?.scrollHeight,
+//     element?.offsetHeight,
+//     element?.clientHeight,
+//   ];
+// };
 
 export const getElementSize = (element: HTMLElement | undefined | null) => {
   const { width: rectWidth = 0, height: rectHeight = 0 } =
@@ -33,33 +34,30 @@ export const getElementSize = (element: HTMLElement | undefined | null) => {
   ];
 };
 
-export default <T extends HTMLElement | undefined | null>(
-  target: RefObject<T>,
-  id: string,
-  callback: (
-    width: number,
-    height: number,
-    element: HTMLElement | null
-  ) => void,
-  deps: DependencyList = []
-) => {
+export default (id: string) => {
   const element = document.getElementById(id);
 
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
+  const updater = useRef<number>(0);
+
   useEffect(() => {
     setTimeout(() => {
       const [newWidth, newHeight] = getElementSize(element);
 
-      if (newWidth !== width || newHeight !== height) {
+      if (newWidth !== width) {
         setWidth(newWidth);
+      }
+      if (newHeight !== height) {
         setHeight(newHeight);
       }
     });
-  }, [width, height, ...elementSizeDeps(target.current), ...deps]);
+  }, [width, height, updater.current]);
 
   useLayoutEffect(() => {
-    callback(width, height, element);
+    width && height && appWindow.setSize(new LogicalSize(width, height));
   }, [width, height]);
+
+  updater.current++;
 };

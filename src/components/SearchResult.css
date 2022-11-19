@@ -1,0 +1,98 @@
+.search-result {
+    position: relative;
+    height: max-content;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+
+.search-result:not(:last-child) {
+    border-bottom: 1px solid #0004;
+    padding-bottom: 4px;
+}
+
+.search-result .video-details {
+    flex: 1;
+    margin-inline-end: 1ch;
+}
+
+.search-result span {
+    padding: 4px 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-result svg {
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: filter 350ms;
+}
+
+.search-result svg:hover {
+    filter: drop-shadow(0 0 7px var(--accent-color-soft));
+    transition: filter 150ms;
+}
+
+.search-result span.extra-details {
+    font-size: 0.8em;
+    opacity: 0.6;
+    white-space: nowrap;
+}
+
+.search-result .video-actions {
+    display: flex;
+    align-items: center;
+    margin-inline-end: 4px;
+}
+
+.search-result .video-actions svg {
+    height: 30px;
+    padding: 2px;
+}
+
+.search-result .video-thumbnail {
+    display: flex;
+    position: relative;
+}
+
+.search-result .video-thumbnail img {
+    height: 60px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    transition: filter .3s ease-out;
+}
+
+.search-result .video-thumbnail:hover img {
+    filter: brightness(0.3);
+    transition-timing-function: ease;
+}
+
+.search-result .video-thumbnail svg {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    transition: inherit, opacity .3s ease;
+}
+
+.search-result .video-thumbnail:hover svg {
+    opacity: 1;
+    transition: inherit, opacity .4s ease;
+}
+
+.search-result .video-duration {
+    position: absolute;
+    inset-inline-end: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    padding: 3px 3px 2px;
+    line-height: 1;
+    background: #0008;
+}
